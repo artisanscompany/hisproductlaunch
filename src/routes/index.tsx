@@ -5,40 +5,81 @@ export const Route = createFileRoute('/')({ component: App })
 
 /* ── Logo ── */
 function Logo({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
-  const s = size === 'lg' ? 'w-12 h-12 text-[18px]' : size === 'md' ? 'w-9 h-9 text-[14px]' : 'w-7 h-7 text-[11px]'
+  const s = size === 'lg' ? 'h-11 px-3.5 text-[17px]' : size === 'md' ? 'h-9 px-3 text-[14px]' : 'h-7 px-2 text-[11px]'
   return (
-    <div className={`${s} relative bg-accent rounded-[4px] flex items-center justify-center overflow-hidden`}>
-      {/* Inner glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
-      <span className="relative font-serif font-normal text-white tracking-[0.02em]">h</span>
+    <div className={`${s} relative bg-accent rounded-[5px] flex items-center justify-center overflow-hidden`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] to-transparent" />
+      <span className="relative font-serif font-normal text-white tracking-[0.06em]">his</span>
     </div>
   )
 }
 
 /* ── Section label ── */
-function Tag({ children, center }: { children: string; center?: boolean }) {
+function Label({ children }: { children: string }) {
   return (
-    <div className={`flex items-center gap-3 mb-6 ${center ? 'justify-center' : ''}`}>
-      <span className="w-5 h-px bg-accent/30" />
-      <span className="font-sans text-[10px] font-500 tracking-[0.35em] uppercase text-accent-soft/70">{children}</span>
-      {center && <span className="w-5 h-px bg-accent/30" />}
+    <div className="flex items-center gap-3.5 mb-6">
+      <span className="w-6 h-px bg-accent/40" />
+      <span className="font-sans text-[12px] font-500 tracking-[0.25em] uppercase text-accent-soft">{children}</span>
     </div>
   )
 }
 
-/* ── Section heading ── */
-function H2({ children, center }: { children: React.ReactNode; center?: boolean }) {
+/* ── Center label ── */
+function CenterLabel({ children }: { children: string }) {
   return (
-    <h2 className={`font-serif text-[clamp(2rem,4vw,3.2rem)] leading-[1.08] text-white ${center ? 'text-center' : ''}`}>
-      {children}
-    </h2>
+    <div className="flex items-center gap-3.5 mb-6 justify-center">
+      <span className="w-6 h-px bg-accent/40" />
+      <span className="font-sans text-[12px] font-500 tracking-[0.25em] uppercase text-accent-soft">{children}</span>
+      <span className="w-6 h-px bg-accent/40" />
+    </div>
   )
 }
 
-/* ── Accent italic ── */
-function A({ children }: { children: string }) {
-  return <i className="accent-text">{children}</i>
-}
+/* ── Data ── */
+const products = [
+  { id: '01', icon: '🌿', name: 'T-Support', cat: 'Supplements & Nutrition', desc: 'Ashwagandha, tongkat ali & maca blend for natural hormonal balance, energy, and vitality. For men who want to feel like themselves again.' },
+  { id: '02', icon: '💊', name: 'Daily Multi', cat: 'Supplements & Nutrition', desc: "A comprehensive men's multivitamin formulated specifically for the Kenyan diet — covering the gaps that most men never know they have." },
+  { id: '03', icon: '☕', name: 'Energy Tea', cat: 'Herbal Infusions', desc: 'A natural energy-boosting herbal infusion for daily vitality. No crash. No compromise. Just clean, sustained energy from nature.' },
+  { id: '04', icon: '✨', name: 'Skin Essentials', cat: 'Personal Care & Grooming', desc: "Men's face wash, moisturiser & SPF trio. Simple, effective, premium. Because great skin isn't complicated — it just needs the right system." },
+  { id: '05', icon: '🧴', name: 'Beard & Body', cat: 'Personal Care & Grooming', desc: 'Premium beard oil and body wash. Formulated for our climate, our skin tones, our lifestyle. Grooming that actually makes sense for the Kenyan man.' },
+  { id: '06', icon: '💪', name: 'Recovery Balm', cat: 'Recovery & Fitness', desc: "Natural muscle recovery rub for active men. Whether you're at the gym, on the pitch, or just back from a long day — this is your reset." },
+]
+
+const steps = [
+  { num: '01', title: 'Receive Your Box', desc: "We send you a curated His launch box — beautifully packaged, full of our debut products. Yours to experience, keep, and share. No strings, just great products." },
+  { num: '02', title: 'Create & Post', desc: "Drop your content on or before April 15th — unboxing, a wellness day, a review, your morning routine. Authentic is everything. Show your audience why you rate it." },
+  { num: '03', title: 'Share Your Code', desc: "Every partner gets a unique discount code for your followers. They save on their first order. You earn on every sale. It's a win for your community, and for you." },
+]
+
+const playbook = [
+  {
+    id: '01', title: 'The Unboxing & First Impression', type: 'Content Type 01',
+    desc: "Let your audience experience the opening with you. Show the packaging, the products, your reaction. No script needed — just you and the box.",
+    tips: ['Film the moment you open the box', 'Share your first impressions of each product', 'Talk to what problem it solves for you', 'Tag @his on Instagram and use your discount code in caption'],
+  },
+  {
+    id: '02', title: 'Day in My Life — Wellness Edition', type: 'Content Type 02',
+    desc: "Weave His into your daily rhythm. Morning skincare, pre-workout supplement, wind-down tea. Show what intentional men's wellness looks like in real life.",
+    tips: ['Morning routine with Skin Essentials & Daily Multi', 'Pre or post workout with T-Support or Recovery Balm', 'Evening wind-down with Energy Tea', 'Voiceover or text overlay — keep it clean and real'],
+  },
+  {
+    id: '03', title: 'The Discount Drop Post', type: 'Content Type 03',
+    desc: "Give your followers an exclusive on launch day. A clean product shot, your honest endorsement, your code. Simple, effective, trusted.",
+    tips: ["High-quality flatlay or product shot (we'll send tips)", 'Your personal reason for backing the brand', 'Your unique discount code prominently featured', 'Link to his.doctor in bio or swipe-up'],
+  },
+  {
+    id: '✦', title: 'Keeping It On Brand', type: 'Creative Guidelines',
+    desc: "We're a premium, health-first brand. Your content should feel elevated — not salesy. Here's what works with our aesthetic:",
+    tips: ['Clean backgrounds — white, linen, dark marble or wood', 'Natural lighting where possible', 'Honest captions — real talk, no hype language', 'Health-forward narrative: "this is how I take care of myself"'],
+  },
+]
+
+const commitments = [
+  { title: 'Your Products, Delivered Free', desc: 'A curated His launch box sent to you — premium packaged, ready to shoot. Everything you need to create great content, at no cost to you.' },
+  { title: 'Commission on Every Sale', desc: 'Every purchase made using your unique discount code earns you a commission. The more your audience engages, the more you earn. Transparent. No games.' },
+  { title: 'Creative Freedom', desc: "We're not here to dictate your content. We trust you because you built your audience. Use your voice — we just ask that you keep it honest and on-brand." },
+  { title: 'Long-Term Partnership', desc: "This isn't a one-post arrangement. Our best-performing partners will become the faces of His campaigns. Think of this as the beginning of something bigger." },
+]
 
 function App() {
   useEffect(() => {
@@ -46,79 +87,73 @@ function App() {
       (entries) => entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target) }
       }),
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
     )
     document.querySelectorAll('.rv').forEach((el) => obs.observe(el))
     return () => obs.disconnect()
   }, [])
 
   return (
-    <div className="min-h-screen bg-base">
+    <div className="min-h-screen bg-base max-w-4xl mx-auto">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
 
-      {/* ━━━━ HERO ━━━━ */}
+      {/* ━━━ HERO ━━━ */}
       <header className="min-h-screen flex flex-col relative overflow-hidden">
-        <div className="absolute -top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-accent/[0.025] blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-[15%] -left-[5%] w-[300px] h-[300px] rounded-full bg-accent/[0.015] blur-[100px] pointer-events-none" />
+        <div className="absolute -top-[30%] right-[5%] w-[600px] h-[600px] rounded-full bg-accent/[0.025] blur-[180px] pointer-events-none" />
+        <div className="absolute bottom-[10%] -left-[8%] w-[400px] h-[400px] rounded-full bg-accent/[0.02] blur-[120px] pointer-events-none" />
 
-        {/* Nav */}
-        <nav className="in relative z-10 flex items-center justify-between px-8 sm:px-14 lg:px-20 pt-10">
-          <div className="flex items-center gap-3.5">
-            <Logo />
-            <span className="font-sans text-[13px] font-500 tracking-[0.2em] uppercase text-bright">His</span>
-          </div>
-          <div className="hidden sm:flex items-center gap-2.5 font-sans text-[10px] font-500 tracking-[0.2em] uppercase text-muted">
-            <span className="w-[5px] h-[5px] rounded-full bg-accent" style={{ animation: 'glow 3s ease-in-out infinite' }} />
-            Partner Kit · 2026
+        <nav aria-label="Main navigation" className="in relative z-10 flex items-center justify-between px-8 sm:px-14 pt-10">
+          <Logo />
+          <div className="hidden sm:block font-sans text-[11px] font-500 tracking-[0.2em] uppercase text-accent-soft border border-rule-accent px-5 py-2 rounded-sm">
+            Influencer Kit · 2026
           </div>
         </nav>
 
-        {/* Content */}
-        <div className="flex-1 flex flex-col justify-center px-8 sm:px-14 lg:px-20 max-w-[820px] py-20">
-          <p className="in in-2 font-sans text-[10px] font-500 tracking-[0.4em] uppercase text-accent-soft/60 mb-12">
-            Exclusive Partner Programme
+        <div className="flex-1 flex flex-col items-center justify-center text-center px-8 sm:px-14 py-16">
+          <p className="in in-1 font-sans text-[11px] font-500 tracking-[0.3em] uppercase text-accent-soft mb-8">
+            Exclusive · Confidential · For Our Partners
           </p>
-          <h1 className="in in-3 font-serif text-[clamp(3rem,7vw,6.2rem)] leading-[0.9] text-white mb-10">
-            Men's Wellness,<br />
-            <i className="accent-text">Reimagined</i>
-          </h1>
-          <p className="in in-5 font-sans text-[16px] font-300 text-body max-w-[420px] mb-16 leading-[1.8]">
-            Be the first to introduce East Africa's premier men's health brand to your audience.
-          </p>
-          <div className="in in-6 flex items-center gap-10">
-            <div>
-              <p className="font-sans text-[9px] font-500 tracking-[0.2em] uppercase text-dim mb-2">Launch</p>
-              <p className="font-serif text-[24px] text-white tracking-wide">April 15, 2026</p>
-            </div>
-            <div className="w-px h-8 bg-rule" />
-            <div>
-              <p className="font-sans text-[9px] font-500 tracking-[0.2em] uppercase text-dim mb-2">Status</p>
-              <div className="flex items-center gap-2">
-                <span className="w-[5px] h-[5px] rounded-full bg-accent-soft" style={{ animation: 'glow 2s ease-in-out infinite' }} />
-                <span className="font-sans text-[13px] font-400 text-accent-soft">Onboarding</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="in in-8 px-8 sm:px-14 lg:px-20 pb-10 flex items-center gap-3">
-          <div className="w-7 h-px bg-accent/25" />
-          <span className="font-sans text-[8px] font-500 tracking-[0.4em] uppercase text-dim">Scroll</span>
+          <h1 className="in in-2 font-serif text-[clamp(3.2rem,7vw,6rem)] leading-[0.92] text-white mb-10">
+            Men's Wellness.<br />
+            <i className="accent-text">Reimagined.</i><br />
+            For Kenya.
+          </h1>
+
+          <p className="in in-4 text-[16px] font-300 text-body max-w-[520px] leading-[1.8] mb-14">
+            You've been selected to be among the first voices to introduce His's inaugural wellness product line to your audience — a collection built for the modern Kenyan man who takes his health seriously.
+          </p>
+
+          <div className="in in-5 flex items-center gap-5">
+            <span className="w-10 h-px bg-accent/40" />
+            <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-light">Official Launch</span>
+            <span className="font-serif text-[22px] text-accent-soft tracking-wide">April 15, 2026</span>
+            <span className="w-10 h-px bg-accent/40" />
+          </div>
         </div>
       </header>
 
 
-      {/* ━━━━ ABOUT ━━━━ */}
-      <section className="px-8 sm:px-14 lg:px-20 py-28 lg:py-36">
-        <div className="max-w-[960px] mx-auto rv">
-          <div className="border-t border-rule pt-16">
-            <Tag>About</Tag>
-            <H2>Health, <A>delivered differently.</A></H2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 mt-10">
-              <p className="font-sans text-[14px] font-300 text-body leading-[1.95]">
-                East Africa's first clinically-credible men's health platform. Doctor consultations paired with wellness products built for men.
+      <main id="main-content" tabIndex={-1}>
+
+      {/* ━━━ ABOUT ━━━ */}
+      <section aria-label="About His" className="px-8 sm:px-14 py-28 lg:py-36 border-t border-rule">
+        <div className="mx-auto rv">
+          <Label>Who We Are</Label>
+          <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.1] text-white mb-8">
+            Health. <i className="accent-text">Delivered Differently.</i>
+          </h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mt-10">
+            <p className="text-[15px] font-300 text-body leading-[1.9]">
+              His is East Africa's first clinically-credible men's health platform — combining real doctor consultations with a curated range of wellness products built specifically for men.
+            </p>
+            <div>
+              <p className="text-[15px] font-300 text-body leading-[1.9] mb-5">
+                We're not another supplement brand. We're a <span className="text-bright font-400">health movement</span>. Every product in our line is reviewed by our clinical team and formulated to address what real Kenyan men actually face — from energy and hormonal balance to skin health and recovery.
               </p>
-              <p className="font-sans text-[14px] font-300 text-body leading-[1.95]">
-                Not another supplement brand — a <span className="text-bright font-400">health movement</span>. Clinician-reviewed and formulated for what Kenyan men actually need.
+              <p className="text-[15px] font-300 text-body leading-[1.9]">
+                On <span className="text-bright font-400">April 15th</span>, we launch our first product collection. And we want your voice to be part of that moment.
               </p>
             </div>
           </div>
@@ -126,31 +161,30 @@ function App() {
       </section>
 
 
-      {/* ━━━━ PRODUCTS ━━━━ */}
-      <section className="px-8 sm:px-14 lg:px-20 py-28 lg:py-36 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-base via-surface/40 to-base pointer-events-none" />
-        <div className="relative max-w-[960px] mx-auto">
+      {/* ━━━ PRODUCTS ━━━ */}
+      <section aria-label="Product collection" className="px-8 sm:px-14 py-28 lg:py-36 border-t border-rule relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-base to-surface/60 pointer-events-none" />
+
+        <div className="relative mx-auto">
           <div className="rv mb-14">
-            <Tag>Collection</Tag>
-            <H2>Six products. <A>Zero filler.</A></H2>
-            <p className="font-sans text-[14px] font-300 text-body max-w-sm mt-4">Purposeful, clean, built to work.</p>
+            <Label>The Collection</Label>
+            <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.1] text-white mb-4">
+              Products Built <i className="accent-text">For the Modern Man.</i>
+            </h2>
+            <p className="text-[15px] font-300 text-body max-w-[520px] leading-[1.8]">
+              Every item in the His line is purposeful, clean, and crafted to actually work. Here's what you'll be introducing your audience to:
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-            {[
-              ['01', '🌿', 'T-Support', 'Supplements', 'Ashwagandha, tongkat ali & maca for hormonal balance and natural energy.'],
-              ['02', '💊', 'Daily Multi', 'Supplements', 'Men\'s multivitamin built for the Kenyan diet and lifestyle.'],
-              ['03', '☕', 'Energy Tea', 'Herbal', 'Clean energy infusion. No crash — just sustained vitality.'],
-              ['04', '✨', 'Skin Essentials', 'Grooming', 'Face wash, moisturiser & SPF trio. Simple and effective.'],
-              ['05', '🧴', 'Beard & Body', 'Grooming', 'Premium beard oil and body wash for our climate.'],
-              ['06', '💪', 'Recovery Balm', 'Fitness', 'Natural muscle recovery for active men.'],
-            ].map(([num, icon, name, cat, desc], i) => (
-              <div key={num} className={`rv rv-${Math.min((i % 3) + 1, 3)} group bg-surface rounded-md p-7 relative overflow-hidden card-hover cursor-default`}>
-                <span className="absolute top-2 right-4 font-serif text-[48px] text-white/[0.015] group-hover:text-accent/[0.03] transition-colors duration-500 pointer-events-none">{num}</span>
-                <span className="text-base block mb-4">{icon}</span>
-                <h3 className="font-serif text-[19px] text-white mb-1">{name}</h3>
-                <p className="font-sans text-[9px] font-500 tracking-[0.25em] uppercase text-accent-soft/40 mb-3">{cat}</p>
-                <p className="font-sans text-[13px] font-300 text-body leading-relaxed">{desc}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2px]">
+            {products.map((p, i) => (
+              <div key={p.id} className={`rv rv-${Math.min((i % 3) + 1, 3)} group card top-accent rounded-sm p-10 relative overflow-hidden cursor-default`}>
+                <span className="absolute top-4 right-6 font-serif text-[72px] text-accent/[0.04] group-hover:text-accent/[0.08] transition-colors duration-600 pointer-events-none select-none leading-none">{p.id}</span>
+
+                <div className="w-11 h-11 border border-rule-accent flex items-center justify-center mb-7 text-[20px]">{p.icon}</div>
+                <h3 className="font-serif text-[24px] text-white mb-2">{p.name}</h3>
+                <p className="font-sans text-[11px] font-500 tracking-[0.2em] uppercase text-accent-soft mb-5">{p.cat}</p>
+                <p className="text-[14px] font-300 text-body leading-[1.8]">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -158,25 +192,23 @@ function App() {
       </section>
 
 
-      {/* ━━━━ PROCESS ━━━━ */}
-      <section className="px-8 sm:px-14 lg:px-20 py-28 lg:py-36">
-        <div className="max-w-[960px] mx-auto">
-          <div className="rv mb-16">
-            <Tag>Process</Tag>
-            <H2>Three steps. <A>That's it.</A></H2>
+      {/* ━━━ HOW IT WORKS ━━━ */}
+      <section aria-label="How it works" className="px-8 sm:px-14 py-28 lg:py-36">
+        <div className="mx-auto">
+          <div className="rv mb-6">
+            <Label>Your Role</Label>
+            <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.1] text-white">
+              How We're <i className="accent-text">Doing This Together.</i>
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-t border-rule pt-16">
-            {[
-              ['01', 'Receive Your Box', 'Curated launch box shipped to you — premium packaged, yours to keep.'],
-              ['02', 'Create Content', 'Unboxing, routine, honest review. Your voice, your style.'],
-              ['03', 'Share Your Code', 'Your audience gets 20% off. You earn on every sale.'],
-            ].map(([num, title, desc], i) => (
-              <div key={num} className={`rv rv-${i + 1}`}>
-                <span className="font-serif text-[64px] leading-none text-accent/[0.04] block mb-[-4px]">{num}</span>
-                <span className="font-sans text-[9px] font-500 tracking-[0.2em] uppercase text-accent-soft/50 border border-rule-accent px-3 py-1 rounded-full inline-block mb-5">Step {num}</span>
-                <h3 className="font-serif text-[22px] text-white mb-3">{title}</h3>
-                <p className="font-sans text-[13px] font-300 text-body leading-[1.8]">{desc}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-16 pt-14 border-t border-rule">
+            {steps.map((s, i) => (
+              <div key={s.num} className={`rv rv-${i + 1} relative`}>
+                <span className="font-serif text-[100px] leading-none text-accent/[0.05] block mb-[-20px] pointer-events-none select-none">{s.num}</span>
+                <span className="inline-block font-sans text-[11px] font-500 tracking-[0.2em] uppercase text-accent-soft border border-rule-accent px-3 py-1 mb-5">Step {s.num}</span>
+                <h3 className="font-serif text-[26px] text-white mb-4">{s.title}</h3>
+                <p className="text-[14px] font-300 text-body leading-[1.85]">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -184,32 +216,28 @@ function App() {
       </section>
 
 
-      {/* ━━━━ PLAYBOOK ━━━━ */}
-      <section className="px-8 sm:px-14 lg:px-20 pb-28 lg:pb-36">
-        <div className="max-w-[960px] mx-auto">
-          <div className="rv mb-12">
-            <Tag>Playbook</Tag>
-            <H2>What to <A>post.</A></H2>
+      {/* ━━━ PLAYBOOK ━━━ */}
+      <section aria-label="Content playbook" className="px-8 sm:px-14 pb-28 lg:pb-36">
+        <div className="mx-auto">
+          <div className="rv mb-6">
+            <Label>Content Playbook</Label>
+            <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.1] text-white">
+              Three Ways to <i className="accent-text">Drop the Brand.</i>
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-            {[
-              ['01', 'The Unboxing', 'Film it. React. Share each product.', ['Open the box on camera', 'First impressions per product', 'Tag @his + your code']],
-              ['02', 'Wellness Day', 'Products woven into your routine.', ['Morning: Skin Essentials + Multi', 'Workout: T-Support or Balm', 'Keep it natural and honest']],
-              ['03', 'Code Drop', 'Shot. Take. Code. Done.', ['Quality flatlay or lifestyle shot', 'Why you back the brand', 'Code + link in bio']],
-              ['✦', 'Brand Guide', 'Premium. Not salesy. Health-forward.', ['Clean backgrounds, natural light', 'No hype — real talk only', '"How I take care of myself"']],
-            ].map(([num, title, desc, items], i) => (
-              <div key={num as string} className={`rv rv-${(i % 2) + 1} group bg-surface rounded-md p-7 lg:p-8 relative overflow-hidden card-hover`}>
-                <span className="absolute -bottom-2 right-3 font-serif text-[90px] text-white/[0.01] pointer-events-none">{num}</span>
-                <p className="font-sans text-[9px] font-500 tracking-[0.3em] uppercase text-accent-soft/30 mb-4">
-                  {num === '✦' ? 'Guidelines' : `Type ${num}`}
-                </p>
-                <h3 className="font-serif text-[22px] text-white mb-1">{title as string}</h3>
-                <p className="font-sans text-[13px] font-300 text-steel mb-5">{desc as string}</p>
-                <ul className="space-y-1.5">
-                  {(items as string[]).map((item, j) => (
-                    <li key={j} className="font-sans text-[12px] text-light/50 flex items-start gap-2">
-                      <span className="text-accent/20 mt-0.5 shrink-0">—</span>{item}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[2px] mt-14 border-t border-rule pt-14">
+            {playbook.map((p, i) => (
+              <div key={p.id} className={`rv rv-${(i % 2) + 1} group card rounded-sm p-10 lg:p-12 relative overflow-hidden`}>
+                <span className="absolute -bottom-5 right-5 font-serif text-[160px] leading-none text-accent/[0.025] pointer-events-none select-none">{p.id}</span>
+
+                <p className="font-sans text-[11px] font-500 tracking-[0.25em] uppercase text-accent-soft mb-6">{p.type}</p>
+                <h3 className="font-serif text-[28px] leading-[1.15] text-white mb-4">{p.title}</h3>
+                <p className="text-[14px] font-300 text-body leading-[1.8] mb-7">{p.desc}</p>
+                <ul className="space-y-2.5">
+                  {p.tips.map((tip, j) => (
+                    <li key={j} className="text-[13px] text-light/70 flex items-start gap-3">
+                      <span className="text-accent-soft/40 shrink-0 mt-0.5">—</span>{tip}
                     </li>
                   ))}
                 </ul>
@@ -220,54 +248,62 @@ function App() {
       </section>
 
 
-      {/* ━━━━ CODE ━━━━ */}
-      <section className="px-8 sm:px-14 lg:px-20 py-28 lg:py-36 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-surface/30 via-base to-surface/30 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-accent/[0.02] blur-[100px] pointer-events-none" />
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rule-accent to-transparent" />
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-rule-accent to-transparent" />
+      {/* ━━━ DISCOUNT CODE ━━━ */}
+      <section aria-label="Discount code" className="px-8 sm:px-14 py-28 lg:py-36 text-center border-t border-b border-rule relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-surface/60 via-base to-surface/60 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/[0.025] blur-[160px] pointer-events-none" />
 
         <div className="relative max-w-md mx-auto">
           <div className="rv">
-            <Tag center>Your Code</Tag>
-            <H2 center>20% off <A>at launch.</A></H2>
+            <CenterLabel>Your Exclusive Code</CenterLabel>
+            <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.1] text-white">
+              Give Your Audience <i className="accent-text">20% Off at Launch.</i>
+            </h2>
           </div>
 
           <div className="rv rv-1 inline-block mt-12 mb-8">
-            <div className="relative border border-accent/15 bg-accent/[0.02] rounded-md px-12 py-7" style={{ boxShadow: '0 0 40px rgba(29,78,216,0.04)' }}>
-              <div className="absolute -top-[3px] -left-[3px] w-1.5 h-1.5 border border-accent/20 rounded-[1px] bg-base" />
-              <div className="absolute -bottom-[3px] -right-[3px] w-1.5 h-1.5 border border-accent/20 rounded-[1px] bg-base" />
-              <p className="font-sans text-[9px] font-500 tracking-[0.3em] uppercase text-muted mb-2">Partner Code</p>
-              <p className="font-serif text-[clamp(1.6rem,4vw,2.6rem)] accent-text tracking-[0.06em]">[YOURNAME]26</p>
+            <div className="relative border border-accent bg-accent/[0.04] px-14 py-8" style={{ boxShadow: '0 0 60px rgba(29,78,216,0.06)' }}>
+              <div className="absolute -top-1 -left-1 w-2 h-2 border border-accent bg-base" />
+              <div className="absolute -bottom-1 -right-1 w-2 h-2 border border-accent bg-base" />
+              <p className="font-sans text-[11px] font-500 tracking-[0.25em] uppercase text-steel mb-2">Your Partner Code</p>
+              <p className="font-serif text-[clamp(2rem,5vw,3.2rem)] text-accent-soft tracking-[0.12em]">[YOURNAME]26</p>
+              <p className="font-sans text-[11px] text-steel mt-2">e.g. AMINA26, BRIAN26</p>
             </div>
           </div>
 
-          <p className="rv rv-2 font-sans text-[13px] font-300 text-body max-w-xs mx-auto mb-10">
-            Valid 30 days from launch. Commission on every sale.
+          <p className="rv rv-2 text-[14px] font-300 text-body max-w-[480px] mx-auto leading-[1.8] mb-10">
+            Each partner receives a personalised code before launch. Share it with your audience from April 15th onwards — valid for 30 days. You earn commission on every sale made through your code.
           </p>
 
-          <div className="rv rv-3 flex flex-wrap gap-2 justify-center">
-            {['#HisDoctor', '#HisLaunch', '#MensWellnessKE', '#KenyanWellness', '#HisPartner'].map((t) => (
-              <span key={t} className="font-sans text-[10px] font-500 text-accent-soft/30 border border-rule-accent/30 px-3.5 py-1 rounded-full hover:bg-accent/[0.03] hover:text-accent-soft/50 transition-all duration-300 cursor-default">{t}</span>
+          <div className="rv rv-3 flex flex-wrap gap-3 justify-center">
+            {['#His', '#HisLaunch', '#MensWellnessKE', '#HealthDeliveredDifferently', '#KenyanWellness', '#HisPartner'].map((t) => (
+              <span key={t} className="font-sans text-[13px] tracking-[0.05em] text-accent-soft/60 border border-rule-accent px-5 py-2 hover:bg-accent/[0.05] hover:border-accent/40 hover:text-accent-soft transition-all duration-300 cursor-default">{t}</span>
             ))}
           </div>
         </div>
       </section>
 
 
-      {/* ━━━━ TIMELINE ━━━━ */}
-      <section className="px-8 sm:px-14 lg:px-20 py-28 lg:py-32 text-center">
-        <div className="max-w-[700px] mx-auto">
+      {/* ━━━ TIMELINE ━━━ */}
+      <section aria-label="Launch timeline" className="px-8 sm:px-14 py-28 lg:py-36 text-center">
+        <div className="mx-auto">
           <div className="rv">
-            <Tag center>Timeline</Tag>
-            <H2 center>Countdown to <A>April 15.</A></H2>
+            <CenterLabel>Timeline</CenterLabel>
+            <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.1] text-white">
+              The Countdown <i className="accent-text">to April 15th.</i>
+            </h2>
           </div>
 
-          <div className="grid grid-cols-3 gap-2.5 mt-14">
-            {[['Now', 'Receive Kit'], ['Apr 8', 'Embargo Lifts'], ['Apr 15', 'Go Live']].map(([num, label], i) => (
-              <div key={num} className={`rv rv-${i + 1} bg-surface rounded-md py-10 px-4 card-hover`}>
-                <span className="font-serif text-[clamp(1.6rem,3.5vw,2.6rem)] text-accent-soft block mb-2">{num}</span>
-                <span className="font-sans text-[9px] font-500 tracking-[0.2em] uppercase text-dim">{label}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-[2px] mt-14">
+            {[
+              { date: 'Now', label: 'Receive Your Kit', active: true },
+              { date: 'Apr 8', label: 'Embargo Lifts — Pre-Tease Content', active: false },
+              { date: 'Apr 15', label: 'Official Launch — Go Live', active: false },
+            ].map((m, i) => (
+              <div key={m.date} className={`rv rv-${i + 1} card rounded-sm py-12 px-8 border-t-2 ${m.active ? 'border-t-accent' : 'border-t-transparent'} hover:border-t-accent transition-colors duration-300`}>
+                {m.active && <div className="flex justify-center mb-3"><span className="w-2 h-2 rounded-full bg-accent-soft" style={{ animation: 'glow 2s ease-in-out infinite' }} /></div>}
+                <span className={`font-serif text-[clamp(2rem,4vw,4.5rem)] block mb-2 ${m.active ? 'text-accent-soft' : 'text-white'}`}>{m.date}</span>
+                <span className="font-sans text-[11px] font-500 tracking-[0.15em] uppercase text-steel">{m.label}</span>
               </div>
             ))}
           </div>
@@ -275,26 +311,23 @@ function App() {
       </section>
 
 
-      {/* ━━━━ COMMITMENTS ━━━━ */}
-      <section className="px-8 sm:px-14 lg:px-20 pb-28 lg:pb-36">
-        <div className="max-w-[960px] mx-auto border-t border-rule pt-16">
-          <div className="rv mb-12">
-            <Tag>What You Get</Tag>
-            <H2>Our commitment <A>to you.</A></H2>
+      {/* ━━━ COMMITMENTS ━━━ */}
+      <section aria-label="Our commitments" className="px-8 sm:px-14 pb-28 lg:pb-36 border-t border-rule pt-28 lg:pt-36">
+        <div className="mx-auto">
+          <div className="rv mb-14">
+            <Label>Our Commitment to You</Label>
+            <h2 className="font-serif text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.1] text-white">
+              What You Can <i className="accent-text">Expect From Us.</i>
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-            {[
-              ['01', 'Free Product Box', 'Premium launch box delivered. No cost, no strings.'],
-              ['02', 'Sales Commission', 'Earn on every purchase through your code.'],
-              ['03', 'Creative Freedom', 'Your voice, your style. We trust your audience.'],
-              ['04', 'Long-Term Deal', 'Top partners become campaign faces.'],
-            ].map(([num, title, desc], i) => (
-              <div key={num} className={`rv rv-${Math.min(i + 1, 4)} flex gap-5 p-6 bg-surface rounded-md border-l-2 border-l-accent/12 hover:border-l-accent/25 card-hover`}>
-                <span className="font-serif text-[28px] text-accent/10 shrink-0 w-7 leading-none">{num}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {commitments.map((c, i) => (
+              <div key={c.title} className={`rv rv-${Math.min(i + 1, 4)} flex gap-6 p-8 bg-surface border-l-2 border-l-accent/30 hover:border-l-accent hover:bg-surface-2 transition-all duration-300`}>
+                <span className="font-serif text-[42px] text-accent/15 shrink-0 leading-none w-10">{String(i + 1).padStart(2, '0')}</span>
                 <div>
-                  <h4 className="font-serif text-[17px] text-white mb-1">{title}</h4>
-                  <p className="font-sans text-[13px] font-300 text-body">{desc}</p>
+                  <h3 className="font-serif text-[20px] text-white mb-3">{c.title}</h3>
+                  <p className="text-[14px] font-300 text-body leading-[1.8]">{c.desc}</p>
                 </div>
               </div>
             ))}
@@ -303,31 +336,54 @@ function App() {
       </section>
 
 
-      {/* ━━━━ FOOTER ━━━━ */}
-      <footer className="px-8 sm:px-14 lg:px-20 py-16 border-t border-rule">
-        <div className="max-w-[960px] mx-auto">
-          <div className="flex flex-col lg:flex-row justify-between gap-10 mb-14">
+      {/* ━━━ CTA ━━━ */}
+      <section aria-label="Get started" className="px-8 sm:px-14 py-20 lg:py-28 text-center border-t border-rule relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-base to-base pointer-events-none" />
+        <div className="relative max-w-[600px] mx-auto rv">
+          <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] leading-[1.1] text-white mb-4">
+            Ready to <i className="accent-text">join the launch?</i>
+          </h2>
+          <p className="text-[15px] font-300 text-body mb-10 leading-[1.8]">
+            Confirm your spot, ask questions, or request your personalised code — reach out via WhatsApp or email.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://wa.me/254700000000?text=Hi%2C%20I%27m%20interested%20in%20the%20His%20Influencer%20Launch%20Kit" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-accent hover:bg-accent-soft text-white font-sans text-[14px] font-500 tracking-[0.05em] px-8 py-4 rounded-sm transition-colors duration-300">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.33 0-4.484-.768-6.223-2.065l-.435-.338-2.633.882.882-2.633-.338-.435A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+              WhatsApp Us
+            </a>
+            <a href="mailto:partnerships@his.doctor" className="inline-flex items-center gap-2 border border-rule-accent text-accent-soft hover:text-accent-bright hover:border-accent/40 font-sans text-[14px] font-500 tracking-[0.05em] px-8 py-4 rounded-sm transition-all duration-300">
+              Email Partnership Team
+            </a>
+          </div>
+        </div>
+      </section>
+
+      </main>
+
+      {/* ━━━ FOOTER ━━━ */}
+      <footer className="px-8 sm:px-14 py-20 border-t border-rule">
+        <div className="mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 mb-16">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <Logo size="sm" />
-                <span className="font-serif text-[28px] text-white">His</span>
-              </div>
-              <p className="font-sans text-[13px] font-300 text-dim max-w-[280px] leading-relaxed">
-                Men's Health. Delivered Differently.<br />Launching April 15, 2026.
+              <p className="text-[14px] font-300 text-steel max-w-[380px] leading-[1.8]">
+                Men's Health. Delivered Differently.<br />
+                East Africa's first clinically-credible men's wellness brand, launching April 15, 2026.
               </p>
             </div>
             <div className="lg:text-right">
-              <p className="font-sans text-[13px] font-300 text-dim leading-[2.2]">
-                <a href="https://his.doctor" className="text-accent-soft hover:text-accent-bright">his.doctor</a><br />
-                <a href="mailto:partnerships@his.doctor" className="text-accent-soft hover:text-accent-bright">partnerships@his.doctor</a><br />
-                @his
+              <p className="text-[14px] font-300 text-steel leading-[2]">
+                Website: <a href="https://his.doctor" target="_blank" rel="noopener noreferrer" className="text-accent-soft hover:text-accent-bright">his.doctor</a><br />
+                Partnerships: <a href="mailto:partnerships@his.doctor" className="text-accent-soft hover:text-accent-bright">partnerships@his.doctor</a><br /><br />
+                Instagram: <a href="https://instagram.com/his" target="_blank" rel="noopener noreferrer" className="text-accent-soft hover:text-accent-bright">@his</a><br />
+                Prepared: March 2026 · Confidential
               </p>
             </div>
           </div>
-          <div className="border-t border-rule pt-6 flex justify-between items-center">
-            <span className="font-sans text-[9px] font-500 tracking-[0.12em] uppercase text-dim/25">© 2026 His</span>
-            <span className="w-1 h-1 rounded-full bg-accent/15" />
-            <span className="font-sans text-[9px] font-500 tracking-[0.12em] uppercase text-dim/25">Confidential</span>
+
+          <div className="border-t border-rule pt-8 flex flex-wrap justify-between items-center gap-4">
+            <span className="font-sans text-[11px] tracking-[0.12em] uppercase text-muted">© 2026 His · All Rights Reserved</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-accent/30" />
+            <span className="font-sans text-[11px] tracking-[0.12em] uppercase text-muted">Influencer Partner Kit · Confidential</span>
           </div>
         </div>
       </footer>
